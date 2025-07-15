@@ -16,4 +16,10 @@ public class Expense {
     public void displayExpense() {
         Utils.typeLine("    Expense: " + description + ", Amount: $" + amount + ", Category: " + categoryName);
     }
+
+    // Override toString method to return expense details as a string for file writing
+    @Override
+    public String toString() {
+        return "Expense:" + description + "," + amount + "," + categoryName;
+    }
 }

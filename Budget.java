@@ -37,10 +37,10 @@ public class Budget {
         Utils.typeLine("Category not found: " + categoryName);
     }
 
-    // Method to add an expense given a description, amount, and  a category
+    // Method to add an expense given a description, amount, and a category
     public void addExpense(String description, double amount, String categoryName) {
         Category targetCategory = null;
-        
+
         // Serach for existing category
         for (Category category : categories) {
             if (category.getName().equals(categoryName)) {
@@ -48,14 +48,14 @@ public class Budget {
                 break;
             }
         }
-        
+
         // If category doesn't exist, create it
         if (targetCategory == null) {
             targetCategory = new Category(categoryName, 0);
             categories.add(targetCategory);
             Utils.typeLine("Category " + categoryName + " does not exist. Created with budget $0.");
         }
-        
+
         // Subtract the expense amount from the category budget
         double newBudget = targetCategory.getBudget() - amount;
         targetCategory.setBudget(newBudget);
@@ -88,5 +88,55 @@ public class Budget {
                 expense.displayExpense();
             }
         }
+    }
+
+    // Method to return a string representation of the budget for saving to a file
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Category category : categories) {
+            stringBuilder.append(category.toString()).append("\n");
+        }
+        for (Expense expense : expenses) {
+            stringBuilder.append(expense.toString()).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
+    // Method to create a Budget object from a string representation
+    public static Budget fromString(String data) {
+        Budget budget = new Budget();
+
+        // Split the data into lines and parse categories and expenses
+        String[] lines = data.split("\n");
+        Category category = null;
+
+        // Iterate through each line to parse categories and expenses
+        for (String line : lines) {
+            if (line.trim().isEmpty())
+                continue; // Skip empty lines
+
+            if (line.startsWith("Category:")) {
+                String[] parts = line.split(",");
+                if (parts.length >= 2) {
+                    String name = parts[0].substring("Category:".length()); // Remove the "Category:" prefix
+                    double budgetAmount = Double.parseDouble(parts[1]);
+                    category = new Category(name, budgetAmount);
+                    budget.categories.add(category);
+                }
+            } else if (line.startsWith("Expense:")) {
+                String[] parts = line.split(",");
+                if (parts.length >= 3) {
+                    String description = parts[0].substring("Expense:".length()); // Remove the "Expense:" prefix
+                    double amount = Double.parseDouble(parts[1]);
+                    String categoryName = parts[2];
+                    Expense expense = new Expense(description, amount, categoryName);
+                    budget.expenses.add(expense);
+                }
+            }
+        }
+
+        Utils.typeLine("Budget loaded successfully.");
+        return budget;
     }
 }

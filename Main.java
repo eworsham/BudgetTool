@@ -1,16 +1,18 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Create budget for managing categories and expenses
-        Budget budget = new Budget();
-
-        Scanner scanner = new Scanner(System.in); // Create scanner for user input
-
         // Display welcome message with typing effect
         System.out.println(); // Add spacing
         Utils.typeLine("Welcome to the Budget Tool!");
         Utils.typeLine("This tool helps you manage your budget effectively.");
+
+        // Load budget data from file if it exists, otherwise create a new budget
+        // Create budget for managing categories and expenses
+        Budget budget = loadBudgetData();
+
+        Scanner scanner = new Scanner(System.in); // Create scanner for user input
 
         // While loop for the main menu of the budget tool
         // This loop will continue until the user chooses to exit
@@ -19,7 +21,7 @@ public class Main {
             displayMenu();
 
             // Get user input
-            String choice = scanner.next();
+            String choice = scanner.nextLine();
 
             // Handle user input
             switch (choice) {
@@ -43,6 +45,8 @@ public class Main {
                     increaseCategoryBudget(budget, scanner); // Call method to increase category budget
                     break;
                 case "5":
+                    saveBudgetData(budget); // Call method to save budget data to file
+                    Utils.typeLine("Thank you for using the Budget Tool!");
                     Utils.typeLine("Exiting...");
                     scanner.close(); // Close scanner before exiting
                     return; // Exit the program
@@ -71,11 +75,12 @@ public class Main {
     private static void addExpense(Budget budget, Scanner scanner) {
         Utils.typeLine(("Adding an expense..."));
         Utils.typeText("Enter expense description: ");
-        String description = scanner.next();
+        String description = scanner.nextLine();
         Utils.typeText("Enter expense amount: ");
         double amount = scanner.nextDouble();
+        scanner.nextLine(); // Consume the leftover newline character
         Utils.typeText("Enter category name: ");
-        String categoryName = scanner.next();
+        String categoryName = scanner.nextLine();
         budget.addExpense(description, amount, categoryName); // Call method to add expense
     }
 
@@ -84,9 +89,10 @@ public class Main {
     private static void createCategory(Budget budget, Scanner scanner) {
         Utils.typeLine("Creating a new category...");
         Utils.typeText("Enter category name: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         Utils.typeText("Enter category budget: ");
         double budgetAmount = scanner.nextDouble();
+        scanner.nextLine(); // Consume the leftover newline character
         budget.createCategory(name, budgetAmount); // Call method to create category
     }
 
@@ -94,9 +100,31 @@ public class Main {
     private static void increaseCategoryBudget(Budget budget, Scanner scanner) {
         Utils.typeLine("Increasing category budget...");
         Utils.typeText("Enter category name: ");
-        String categoryName = scanner.next();
+        String categoryName = scanner.nextLine();
         Utils.typeText("Enter amount to increase budget by: ");
         double increaseAmount = scanner.nextDouble();
-        budget.increaseCategoryBudget(categoryName, increaseAmount); // Call method to increase category budget    
+        scanner.nextLine(); // Consume the leftover newline character
+        budget.increaseCategoryBudget(categoryName, increaseAmount); // Call method to increase category budget
     }
+
+    // Method to save budget data to file name "budget_data.txt"
+    private static void saveBudgetData(Budget budget) {
+        Utils.writeToFile("budget_data.txt", budget.toString()); // Call method to write budget data to file
+        Utils.typeLine("Budget data saved to budget_data.txt");
+    }
+
+    // Method to load budget data from file "budget_data.txt"
+    private static Budget loadBudgetData() {
+        // Check if the file exists and read data from it
+        File file = new File("budget_data.txt");
+        if (!file.exists()) {
+            Utils.typeLine("No existing budget data found. Starting with a new budget.");
+            return new Budget(); // Return a new budget if file does not exist
+        }
+        
+        // Read data from the file and create a Budget object
+        String data = Utils.readFromFile("budget_data.txt");
+        return Budget.fromString(data);
+    }
+
 }

@@ -29,4 +29,10 @@ public class Category {
     public void displayCategory() {
         Utils.typeLine("    Category: " + name + ", Budget: $" + budget);
     }
+
+    // Override toString method to return category details as a string for file writing
+    @Override
+    public String toString() {
+        return "Category:" + name + "," + budget;
+    }
 }
