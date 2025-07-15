@@ -10,18 +10,23 @@ public class Category {
         this.budget = budget;
     }
 
-    // Getter for category name
+    // Method to get the name of the category
     public String getName() {
         return name;
     }
 
-    // Getter for category budget
+    // Method to get the budget for the category
     public double getBudget() {
         return budget;
     }
 
+    // Method to set the budget for the category
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
+
     // Method to display category details
     public void displayCategory() {
-        Utils.typeLine("Category: " + name + ", Budget: $" + budget);
+        Utils.typeLine("    Category: " + name + ", Budget: $" + budget);
     }
 }

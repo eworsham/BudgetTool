@@ -24,13 +24,16 @@ public class Main {
             // Handle user input
             switch (choice) {
                 case "1":
+                    Utils.typeLine("Viewing budget...");
+
+                    // Display categories and their budgets
                     budget.viewCategories(); // Call method to view categories
+
+                    // Display expenses
+                    budget.viewExpenses(); // Call method to view expenses
+
                     break;
                 case "2":
-                    if (budget.getCategoryCount() == 0) {
-                        Utils.typeLine("No categories available. Please create a category first.");
-                        break; // Exit the case if no categories exist
-                    }
                     addExpense(budget, scanner); // Call method to add expense
                     break;
                 case "3":

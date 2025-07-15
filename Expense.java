@@ -14,6 +14,6 @@ public class Expense {
 
     // Method to display expense details
     public void displayExpense() {
-        Utils.typeLine("Expense: " + description + ", Amount: $" + amount + ", Category: " + categoryName);
+        Utils.typeLine("    Expense: " + description + ", Amount: $" + amount + ", Category: " + categoryName);
     }
 }
