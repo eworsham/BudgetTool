@@ -40,6 +40,9 @@ public class Main {
                     createCategory(budget, scanner); // Call method to create category
                     break;
                 case "4":
+                    increaseCategoryBudget(budget, scanner); // Call method to increase category budget
+                    break;
+                case "5":
                     Utils.typeLine("Exiting...");
                     scanner.close(); // Close scanner before exiting
                     return; // Exit the program
@@ -57,7 +60,8 @@ public class Main {
         Utils.typeLine("1. View Budget");
         Utils.typeLine("2. Add Expense");
         Utils.typeLine("3. Create Category");
-        Utils.typeLine("4. Exit");
+        Utils.typeLine("4. Increase Category Budget");
+        Utils.typeLine("5. Exit");
         System.out.println(); // Add spacing
         Utils.typeText("Please choose an option: ");
     }
@@ -84,5 +88,15 @@ public class Main {
         Utils.typeText("Enter category budget: ");
         double budgetAmount = scanner.nextDouble();
         budget.createCategory(name, budgetAmount); // Call method to create category
+    }
+
+    // Method to increase the budget of an existing category
+    private static void increaseCategoryBudget(Budget budget, Scanner scanner) {
+        Utils.typeLine("Increasing category budget...");
+        Utils.typeText("Enter category name: ");
+        String categoryName = scanner.next();
+        Utils.typeText("Enter amount to increase budget by: ");
+        double increaseAmount = scanner.nextDouble();
+        budget.increaseCategoryBudget(categoryName, increaseAmount); // Call method to increase category budget    
     }
 }

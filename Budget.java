@@ -25,6 +25,18 @@ public class Budget {
         Utils.typeLine("Category created: " + name + " with budget $" + budget);
     }
 
+    // Method to increase the budget of an existing category
+    public void increaseCategoryBudget(String categoryName, double amount) {
+        for (Category category : categories) {
+            if (category.getName().equals(categoryName)) {
+                category.setBudget(category.getBudget() + amount);
+                Utils.typeLine("Increased budget for category: " + category.getName() + " by $" + amount);
+                return;
+            }
+        }
+        Utils.typeLine("Category not found: " + categoryName);
+    }
+
     // Method to add an expense given a description, amount, and  a category
     public void addExpense(String description, double amount, String categoryName) {
         Category targetCategory = null;
