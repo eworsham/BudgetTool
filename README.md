@@ -1,8 +1,8 @@
 # Overview
 
-This software is a budget tool. It allows users to create a budget by defining categories and setting spending budgets to try to stay under for each category. The user can enter new expenses assigned to the categories. The user can see they budget, which includes categories with remaining amount listed for each one, and includes expense data: description, amount, and the category the expense belongs to. On exiting the program, the budget is saved to an external file, where it will be loaded into the program on startup, effectively saving and loading the budget data from session to session.
+This software is a budget tool. It allows users to create a budget by defining categories and setting spending limits for each one. The user can enter new expenses assigned to the categories. The user can see their budget, which shows each category with its remaining balance, and includes expense data: description, amount, and the category the expense belongs to. On exiting the program, the budget is saved to an external file, where it will be loaded into the program on startup, effectively saving and loading the budget data from session to session.
 
-I wrong this program to learn more about Java. I wanted to explore different ways to use Java and by taking the knowledge I have from other programming languages and translating those skills into Java. I was able to learn a lot about file reading and writing in Java and how to compile and run Java files.
+I wrote this program to learn more about Java. I wanted to explore different ways to use Java by applying knowledge from other programming languages and translating those skills into Java. Through this project, I learned a lot about reading and writing files in Java, as well as how to compile and run Java programs.
 
 [Software Demo Video](https://www.youtube.com/watch?v=NpnDxg13hlc)
 
@@ -19,5 +19,5 @@ I wrong this program to learn more about Java. I wanted to explore different way
 
 # Future Work
 
-- I would like to enhance the features of the program in the future. Include actions like deleting a category, edit/delete expenses, and adding timestamps to expenses
-- I would also like to make the output a little cleaner. Maybe add some spacing to the output in the console so that the program is more readable while being used
+- I would like to enhance the features of the program in the future, including actions like deleting a category, editing or deleting expenses, and adding timestamps to expenses.  
+- I would also like to improve the console output formatting, maybe by adding spacing and alignment so the program is more readable while being used.
