@@ -45,6 +45,7 @@ public class Utils {
             while (scanner.hasNextLine()) {
                 content.append(scanner.nextLine()).append("\n");
             }
+            scanner.close();
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         }
