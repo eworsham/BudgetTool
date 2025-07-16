@@ -4,7 +4,7 @@ This software is a budget tool. It allows users to create a budget by defining c
 
 I wrong this program to learn more about Java. I wanted to explore different ways to use Java and by taking the knowledge I have from other programming languages and translating those skills into Java. I was able to learn a lot about file reading and writing in Java and how to compile and run Java files.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://www.youtube.com/watch?v=NpnDxg13hlc)
 
 # Development Environment
 
